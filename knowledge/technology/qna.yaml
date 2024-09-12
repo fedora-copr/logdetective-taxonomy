@@ -1,0 +1,3624 @@
+"created_by": |-
+  Log Detective Team
+"document":
+  "commit": |-
+    HEAD
+  "patterns":
+  - |-
+    README.md
+  "repo": |-
+    https://github.com/fedora-copr/logdetective-taxonomy
+"document_outline": |-
+  Building RPMs
+"domain": |-
+  software
+"seed_examples":
+- "context": |-
+    '
+    + ant -Dant.java.version=1.8 prepare-dist
+    Error: could not find
+    libjava.so
+    Error: Could not find Java SE Runtime Environment.
+  "questions_and_answers":
+  - "answer": |-
+      ant fails to load libjava.so
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      No idea, fails on COPR, working fine on build.opensuse.org
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      For some reason openjdk is not properly installed.
+
+      Note that same source
+      RPM build succeeds on build.opensuse.org for same EPEL 7 package
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r:
+    Could not import extension sphinx_autodoc_typehints (exception: No module named 'sphinx_autodoc_typehints
+  "questions_and_answers":
+  - "answer": |-
+      Missing import for python
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      BuildRequires:  python3-sphinx-autodoc-typehints
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependency python3-sphinx-autodoc-typehints was missing
+    "question": |-
+      What is the reason the build has failed?
+- "context": "  \nNo matching package to install: 'go-vendor-tools'\nNot all dependencies\n\
+    satisfied\nError: Some packages could not be foun"
+  "questions_and_answers":
+  - "answer": |-
+      This snippet contains the error message: that the go-vendor-tools package could not be installed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Double check the package name. Make sure to build go-vendor-tools
+      first if it is a dependency of the current package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The go-vendor-tools package is not available in the repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    k
+    DEBUG util.py:461:  No matching package to install: 'nodejs-cjs-module-lexer'
+  "questions_and_answers":
+  - "answer": |-
+      The 'nodejs-cjs-module-lexer' dependency package is not available during build.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Verify if the missing package is correct. If yes, find out why it is not available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      One package dependency can't be found during the build.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  Not all dependencies satisfied
+    DEBUG
+    util.py:461:  Error: Some packages could not be found.
+  "questions_and_answers":
+  - "answer": |-
+      There are dependencies required for the build which can't be satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Verify if the missing package is correct. If yes, find out why it is not available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      One package dependency can't be found during the build.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  No match for argument: python3dist(terminaltables) >= 3.1.10
+  "questions_and_answers":
+  - "answer": |-
+      Required package for the build is not available in the requested version.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the missing package dependency. Verify that the package is
+      correct and if it is missing you can add it as a new package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Package dependency can't be satisfied because there is a package which can't be found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  Failed to resolve the transaction:
+  "questions_and_answers":
+  - "answer": "RPM package transaction has failed. Build can't continue because some\
+      \ dependencies can't be satisfied.  "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the missing package dependency. Verify that the package is
+      correct and if it is missing you can add it as a new package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Package dependency can't be satisfied because there is a package which can't be found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Problem: nothing provides requested (crate(drm/default) >= 0.9.0 with crate(drm/default) < 0.10.0~
+  "questions_and_answers":
+  - "answer": |-
+      Error message
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Package rust-drm between 0.9.0 and 0.10.0
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The package did not have the right version available
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    04
+    error: Couldn't download https://github.com/hyprwm/${name}/archive/v0.2.0/hyprlock-0.2.0.tar.
+  "questions_and_answers":
+  - "answer": |-
+      there is typo in %{name} macro
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      there should be %{name} instead of ${name}
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      because there is typo in name macro
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r:
+      file /etc/dnf/dnf.conf from install of libdnf5-5.1.12-1.fc40.x86_64
+    conflicts with file from package dnf-data-4.19.0-1.fc40.noar
+  "questions_and_answers":
+  - "answer": "It's not possible to install all the required packages because there's\
+      \ a file conflict\nbetween a newly installed (libdnf5) and an already installed\
+      \ (dnf-data) package.  \n"
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Resolve the conflict first.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |
+      Some of the required packages were not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r:
+      file /etc/dnf/dnf.conf from install of libdnf5-5.1.14-1.fc41.x86_64
+    conflicts with file from package dnf-data-4.19.0-1.fc40.noar
+  "questions_and_answers":
+  - "answer": "It's not possible to install all the required packages because there's\
+      \ a file conflict\nbetween a newly installed (libdnf5) and an already installed\
+      \ (dnf-data) package.  \n"
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Resolve the conflict first.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |
+      Some of the required packages were not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r:
+      file /etc/dnf/dnf.conf from install of libdnf5-5.1.12-1.fc40.aarch64
+    conflicts with file from package dnf-data-4.19.0-1.fc40.noar
+  "questions_and_answers":
+  - "answer": |
+      It's not possible to install all the required packages because there's a file conflict
+      between a newly installed (libdnf5) and an already installed (dnf-data) p
+      ackage.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Resolve the conflict first.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Some of the required packages were not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r:
+      file /etc/dnf/dnf.conf from install of libdnf5-5.1.14-1.fc41.aarch64
+    conflicts with file from package dnf-data-4.19.0-1.fc40.noar
+  "questions_and_answers":
+  - "answer": "It's not possible to install all the required packages because there's\
+      \ a file conflict\nbetween a newly installed (libdnf5) and an already installed\
+      \ (dnf-data) package.  \n"
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Resolve the conflict first.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |
+      Some of the required packages were not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    1
+
+    Copr build error: Build fail
+  "questions_and_answers":
+  - "answer": |-
+      A final message from the copr build service about halting an attempt to complete the build.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Handle the chained build in the correct order by building the
+      missing dependencies before attempting to build the package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Build time dependencies necessary to do the build aren't present in the repositories available to the builder.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "5:\n/usr/include/glib-2.0/glib/gmacros.h:1339:49: error: redefinition\
+    \ of \xE2\x80\x98glib_autoptr_clear_GtkStackPage\xE2"
+  "questions_and_answers":
+  - "answer": |-
+      Information about an attempt to redefine a previously defined variable.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      This usually involves fixing the issue upstream, and/or downgrading the library
+      that the build depends on to a previously working version before the API break.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Attempted redefinitions of variables defined elsewhere already.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    c
+    ninja: build stopped: subcommand failed.
+  "questions_and_answers":
+  - "answer": |-
+      A message about a final compilation termination.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      This usually involves fixing the issue upstream, and/or downgrading the library
+      that the build depends on to a previously working version before the API break.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Attempted redefinitions of variables defined elsewhere already.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .c
+    FAILED: src/libide/tweaks/libide-tweaks-46.a.p/ide-tweaks-window.c.
+  "questions_and_answers":
+  - "answer": |-
+      An error message indicating a build error and the affected filename.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      This usually involves fixing the issue upstream, and/or downgrading the library
+      that the build depends on to a previously working version before the API break.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Attempted redefinitions of variables defined elsewhere already.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .0
+    collecting ... Fatal Python error: Segmentation fau
+  "questions_and_answers":
+  - "answer": |-
+      Contains a message about crashing test runner.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      I don't know how exactly to handle the fix, the issue was caused
+      either by a compiler (gcc) or python interpreter bumps to
+      later versions, and fixing the issue would imply making changes
+      to the source code and/or fixing a python/pytest/gcc bug.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The test runner crashed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'gdm-pam-extensions-deve
+  "questions_and_answers":
+  - "answer": |-
+      package cannot be installed
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      make sure the packages can be installed on the system
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      some packages could not be installed
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \nNo matching package to install: 'gstreamer1-devel'\nNo matching package\
+    \ to install: 'gtk2-devel'"
+  "questions_and_answers":
+  - "answer": |-
+      shows that the following packages cannot be installed
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      make sure that the packages can be installed on the build system
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      because DNF command failed to install some packages
+    "question": |-
+      What is the reason the build has failed?
+- "context": "  \nNo matching package to install: 'python3-dnf >= 4.19."
+  "questions_and_answers":
+  - "answer": |-
+      Required package python3-dnf is not available in any enabled repository.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Enable a repo with python3-dnf package or download and install the package manually.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |
+      Some of the required packages were not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ':
+    src/libnm-glib-aux/nm-uuid.c:490:12: error: '_1' may be used uninitialized [-Werror=maybe-uninitialized
+  "questions_and_answers":
+  - "answer": |-
+      This is warning about uninitialized variable.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Please look at the source and make sure you use only initialized variable.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because there is warning about not initialized variable
+      and the setting of the project is that all warnings are fatal.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     ^
+    lto1: all warnings being treated as errors
+    lto-wrapper: fatal error: gcc returned 1 exit statu
+  "questions_and_answers":
+  - "answer": |-
+      All warning are treated as error. And previous warning are converted to error.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Please look at the source and make sure you use only initialized variable.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because there is warning about not initialized variable
+      and the setting of the project is that all warnings are fatal.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    Not all dependencies satisfied
+  "questions_and_answers":
+  - "answer": |-
+      It shows the general error about dependencies not satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Add or enable repository which has the missing dependencies available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Not all dependencies were installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    R
+  "questions_and_answers":
+  - "answer": |-
+      The requirements from metadata were not satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    Requirement not satisfied: graphviz; extra == 'graphviz'
+  "questions_and_answers":
+  - "answer": |-
+      The requirements from metadata were not satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    Requirement not satisfied: pytest-mock>=3.12; extra == 'test'
+  "questions_and_answers":
+  - "answer": |-
+      The requirements from metadata were not satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    Requirement not satisfied: pytest>=7.4.3; extra == 'test'
+  "questions_and_answers":
+  - "answer": |-
+      The requirements from metadata were not satisfied.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    No matching package to install: 'python3dist(pip) >= 23.3.1'
+  "questions_and_answers":
+  - "answer": |-
+      The missing dependent/required package was not matched for installation.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    Not all dependencies satisfied
+  "questions_and_answers":
+  - "answer": |-
+      The dependencies were not satisfied in completion.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d
+    Error: Some packages could not be found.
+  "questions_and_answers":
+  - "answer": |-
+      The required package was not found
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    WARNING: DNF command failed, retrying, attempt #2, sleeping 10s
+  "questions_and_answers":
+  - "answer": |-
+      The DNF command failed, it's trying again.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that correct/available versions of packages are in the metadata. Check that the repos are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were some missing dependencies/required packages. When the DNF command tried
+      to install the packages it failed, because the packages were not matched.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    on
+    ok 70 - empty author ident
+    # failed 1 among 70 test(
+  "questions_and_answers":
+  - "answer": |-
+      Sanity check result which failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the errors reported by the sanity checks.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      It seems that some of the sanity checks did not completed successfully.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    12
+    error: Bad exit status from /var/tmp/rpm-tmp.ctMmng (%chec
+  "questions_and_answers":
+  - "answer": |-
+      It shows the reason of the failure.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the errors reported by the sanity checks.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      It seems that some of the sanity checks did not completed successfully.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    n:
+    Problem: cannot install the best candidate for the job
+      - nothing
+    provides nim-srpm-macros needed by redhat-rpm-config-178-1.fc34.noar
+  "questions_and_answers":
+  - "answer": |-
+      It describes the error that no repository provides the required package.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Rerun the build
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      No repository provides the package required. This is probably an infrastructure failure.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3dist(check-manifest
+  "questions_and_answers":
+  - "answer": |-
+      Dependency 'check-manifest' isn't available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Only depend on packages available in the repositories, or
+      ensure they are in repositories before making a build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available in RHEL 9 BaseOS, AppStream or CRB repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3dist(twine
+  "questions_and_answers":
+  - "answer": |-
+      Dependency 'twine' isn't available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Only depend on packages available in the repositories, or
+      ensure they are in repositories before making a build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available in RHEL 9 BaseOS, AppStream or CRB repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e>
+    ModuleNotFoundError: No module named 'pat
+  "questions_and_answers":
+  - "answer": |-
+      Module 'path' does not exist.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure you install the module, or ensure you are importing a submodule from a correct module.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Module 'path' isn't available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ch
+     Problem 2: conflicting requests
+      - nothing provides python(abi)
+    = 3.11 needed by python3-pandoc-2.2-1.fc37.noar
+  "questions_and_answers":
+  - "answer": |-
+      Pandoc package requires Python 3.11.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Dependencies need to have their dependence on Python corrected,
+      so it points to actual Python version available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multilple dependencies require Python 3.11 or Python 3.10, but this build system only has Python 3.12.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "h\n Problem 3: cannot install the best candidate for the job\n  - nothing\
+    \ provides python(abi) "
+  "questions_and_answers":
+  - "answer": |-
+      Sphinx package requires Python 3.10.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Dependencies need to have their dependence on Python corrected,
+      so it points to actual Python version available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multilple dependencies require Python 3.11 or Python 3.10, but this build system only has Python 3.12.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ob
+      - nothing provides python(abi) = 3.11 needed by python3-jupyter-client-8.2.0-1.fc39.noar
+  "questions_and_answers":
+  - "answer": |-
+      Jupyter dependency requires Python 3.11.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Dependencies need to have their dependence on Python corrected,
+      so it points to actual Python version available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multilple dependencies require Python 3.11 or Python 3.10, but this build system only has Python 3.12.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ts
+      - nothing provides python(abi) = 3.11 needed by python3-transaction-3.1.0-1.fc39.noar
+  "questions_and_answers":
+  - "answer": |-
+      'python3-transaction' requires Python 3.11.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Correct the Python requirements of the dependencies.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies require Python 3.10 or Python 3.11, but this system has Python 3.12.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ch
+      - nothing provides python(abi) = 3.10 needed by python3-pyramid_beaker-0.8-1.fc36.noar
+  "questions_and_answers":
+  - "answer": |-
+      python3-pyramit_beaker requires Python 3.10
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Correct the Python requirements of the dependencies.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies require Python 3.10 or Python 3.11, but this system has Python 3.12.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r
+
+    Copr build error: Build fail
+  "questions_and_answers":
+  - "answer": |-
+      The results of the build.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Rebuild the libdnf library before trying to build this package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The libdnf library has not been rebuilt in time to support the functionality in the package code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    nf
+    ImportError: /lib64/libdnf.so.2: undefined symbol: g_once_init_enter_point
+  "questions_and_answers":
+  - "answer": |-
+      Informs about an ImportError in the python script.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Rebuild the libdnf library before trying to build this package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The libdnf library has not been rebuilt in time to support the functionality in the package code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    nf
+    ImportError: /lib64/libdnf.so.2: undefined symbol: g_once_init_enter_pointer
+    WARNING:
+    DNF command failed, retrying, attempt #3, sleeping 1
+  "questions_and_answers":
+  - "answer": |-
+      Informs about an ImportError and also informs that DNF command failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Rebuild the libdnf library before trying to build this package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The libdnf library has not been rebuilt in time to support the functionality in the package code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    se
+    Finish: build setup for python-matplotlib-3.8.3-1.fc38.src.rpm
+    Finish:
+    build phase for python-matplotlib-3.8.3-1.fc38.src.r
+  "questions_and_answers":
+  - "answer": |-
+      Although dependencies were not met, the build continued.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either add another repository for the dependency to be found
+      or use another library so the dependency is not needed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed due to dependency issues.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    R: Dependency "systemd" not found, tried pkgconf
+  "questions_and_answers":
+  - "answer": |-
+      Unmet dependency "systemd".
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Include "cmake" and "systemd" packages in list of packages to install.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build failed due to multiple unmet dependencies. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .0
+    Did not find CMake 'cmake'
+    Found CMake: N
+  "questions_and_answers":
+  - "answer": |-
+      Unmet dependency "cmake".
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Include "cmake" and "systemd" packages in list of packages to install.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build failed due to multiple unmet dependencies. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    No matching package to install: 'python3dist(setuptools) >= 64'
+    No
+    matching package to install: 'python3dist(setuptools-scm) >= 7'
+  "questions_and_answers":
+  - "answer": |-
+      The packages that can't be found in the official repo are python3dist(setuptools)
+      >= 64 and python3dist(setuptools-scm) >= 7.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Lower the requirements to match the repo requirements.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Packages python3dist(setuptools-scm) >= 7 and python3dist(setuptools)
+      >= 64 are not in the official repository for this chroot.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Not all dependencies satisfied
+    Error: Some packages could not be foun
+  "questions_and_answers":
+  - "answer": |-
+      Explains that the error happened when installing dependencies
+      because some dependencies could not be installed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Review if the enabled repositories contain required packages
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Some dependencies failed to be installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "d.\nNo matching package to install: 'python3dist(setuptools) >= 64'\n\
+    No\nmatching package to install: 'python3dist(setuptools-scm) >= "
+  "questions_and_answers":
+  - "answer": |-
+      Describes exactly which packages failed to be installed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Review if the enabled repositories contain required packages
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Some dependencies failed to be installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    7)
+    Error: Failed to download metadata for repo 'eln-baseos': Cannot download
+    repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tri
+  "questions_and_answers":
+  - "answer": |-
+      Repository 'eln-baseos' cannot be downloaded.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Network error occured; repository metadata could not be downloaded.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    n:
+    No match for argument: elpa-mpich-devel >= 2018.05.0
+  "questions_and_answers":
+  - "answer": |-
+      Dependency 'elpa-mpich-devel' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      DNF dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    01
+    No match for argument: elpa-openmpi-devel >= 2018.05.0
+  "questions_and_answers":
+  - "answer": |-
+      Dependency 'elpa-openmpi-devel' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      DNF dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3dist(pandas
+  "questions_and_answers":
+  - "answer": |-
+      Package 'pandas' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure the package depends on packages available in repositories available in the build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3dist(google-api-python-client
+  "questions_and_answers":
+  - "answer": |-
+      Package 'google-api-python-client' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure the package depends on packages available in repositories available in the build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )'
+    No matching package to install: 'python3dist(google-auth-oauthlib
+  "questions_and_answers":
+  - "answer": |-
+      Package 'google-oauth-oauthlib' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure the package depends on packages available in repositories available in the build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     .
+    + %generate_buildrequires
+    /var/tmp/rpm-tmp.eWXmd2: line 48: fg: no job contr
+  "questions_and_answers":
+  - "answer": |-
+      This macro doesn't exist therefore rpm will leave it as it is.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Remove this line and specify all buildrequires as BuildRequires tag manually.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "Because the macro doesn't exist, it is interpreted as it is\nand executed\
+      \ in bash which interprets % as job control.\n   "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3.11dist(hatchling) >= 1.1
+  "questions_and_answers":
+  - "answer": |-
+      Package 'hatchling' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure the dependency is in repositories before depending on it.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The package depends on 'hatchling' which is not available in the repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No matching package to install: 'python3.11dist(hatchling) >= 1.11
+  "questions_and_answers":
+  - "answer": |-
+      The package ''python3.11dist" does not exist or does not ship the version "1.11".
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either choose a different package or make it available by allowing a different package repository.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Unmet dependencies
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Not all dependencies satisfied
+    Error: Some packages could not be found
+  "questions_and_answers":
+  - "answer": |-
+      Missing dependencies due to unavailability of some packages.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either choose a different package or make it available by allowing a different package repository.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Unmet dependencies
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    2
+
+    FAIL: src/tls/test-socket-activation-helpe
+  "questions_and_answers":
+  - "answer": |-
+      Describes in which file the error occured
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Probably an infra issue, rerun the build
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      /usr/bin/systemd-nspawn command failed
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    il
+    socket-activation-helper: poll() failed: No child processe
+  "questions_and_answers":
+  - "answer": |-
+      Describes which function call failed
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Probably an infra issue, rerun the build
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      /usr/bin/systemd-nspawn command failed
+    "question": |-
+      What is the reason the build has failed?
+- "context": " 0\n# FAIL: "
+  "questions_and_answers":
+  - "answer": |-
+      One test failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build, or investigate the failing tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test suite did not pass.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    2
+
+    FAIL: src/tls/test-socket-activation-help
+  "questions_and_answers":
+  - "answer": |-
+      Test 'src/tls/test-socket-activation-helper' failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build, or investigate the failing tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test suite did not pass.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    os
+    FAIL: src/tls/test-socket-activation-helper.
+  "questions_and_answers":
+  - "answer": |-
+      Test 'src/tls/test-socket-activation-helper.sh' failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build, or investigate the failing tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test suite did not pass.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r
+    ./src/tls/test-socket-activation-helper.sh: line 1: kill: (9199) - No such process
+  "questions_and_answers":
+  - "answer": |-
+      Test tried to kill a process that doesn't exist.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build, or investigate the failing tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test suite did not pass.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\x99:\n../../designer/pluginloader.cpp:146:17: error: \xE2\x80\x98Py_SetProgramName\xE2\
+    \x80\x99\nwas not declared in this scope; did you mean \xE2\x80\x98Py_GetProgramName\xE2\
+    \x80"
+  "questions_and_answers":
+  - "answer": |-
+      object not declared in this scope
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      look into the codebase to fix the declaration
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      some of the objects in the codebase are not declared
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    pm
+    pyproject_save_files: invalid option -- '
+  "questions_and_answers":
+  - "answer": |-
+      Option 'l' isn't valid.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Inspect 'pyproject_save_files' and invalid option 'l'.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Spec file or other build file contains errors.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    l'
+    error: /builddir/build/originals/python-hatchling.spec: line 49: Unknown option l in pyproject_save_files
+  "questions_and_answers":
+  - "answer": |-
+      Spec file contains error on line 49 in pyproject_save_files()
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Inspect 'pyproject_save_files' and invalid option 'l'.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Spec file or other build file contains errors.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ed
+    Error: Some packages could not be foun
+  "questions_and_answers":
+  - "answer": |-
+      Describes the error that some packages needed for build could not be found
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Enable repositories containing required packages.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Some packages required for build could not be found in enabled repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Package python3.11-flit-core-3.9.0-4.el9.noarch is already installed.No
+    matching package to install: 'python3.11dist(babel) >= 2.
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'babel >= 2.9' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "9'\nNo matching package to install: 'python3.11dist(cython) >= "
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'cython >= 3' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+
+    No matching package to install: 'python3.11dist(imagesize) >= 1.
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'imagesize >= 1.3' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "3'\nPackage python3.11-packaging-21.3-1.el9.noarch is already installed.No\n\
+    matching package to install: 'python3.11dist(jinja2) >= "
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'jinja2 >= 3' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    No matching package to install: 'python3.11dist(pygments) >= 2.14'
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'pygments >= 2.14' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    No matching package to install: 'python3.11dist(setuptools) >= 67'
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'setuptools >= 67' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    No matching package to install: 'python3.11dist(snowballstemmer) >= 2'
+  "questions_and_answers":
+  - "answer": |-
+      Python 3.11 dependency 'snowballstemmer >= 2' is not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure dependencies are available in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies are not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    LD
+    + scl enable '%{scl}' -
+    /var/tmp/rpm-tmp.KbI8rW: line 33: scl: command not fou
+  "questions_and_answers":
+  - "answer": |-
+      The command 'scl' was not found
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Provide the command 'scl'
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Missing utility or script
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    LD
+    + scl enable '%{scl}' -
+    /var/tmp/rpm-tmp.Sgo1r8: line 33: scl: command not fou
+  "questions_and_answers":
+  - "answer": |-
+      Missing command 'scl'
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Provide 'scl' to the enviroment
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Missing utility or script 'scl'
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     -
+    /var/tmp/rpm-tmp.VD7Tod: line 31: scl: command not fou
+  "questions_and_answers":
+  - "answer": |-
+      Explains that the error occured because `scl` command was not found.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Install package containing scl binary
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      `scl` command was not found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    t
+    rm: cannot remove '/builddir/build/BUILD/oc-openshift-clients-4.15.0-202402082307/debugsourcefiles.list':
+    No such file or directory
+  "questions_and_answers":
+  - "answer": |-
+      This file does not exist but it is deleted in spec file.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Drop the rm.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because in the specfile in install section there is line that deletes a file which does not exist.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      Installed (but unpackaged) file(s) found:
+       /usr/include/minizip/ioapi.
+  "questions_and_answers":
+  - "answer": |-
+      This log snippet explains that there are some packages installed,
+      but they are not listed in %files section in specfile
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Add the unpackaged files to %files section in the package specfile
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Some installed files are not packaged in the RPM
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    =
+    ERROR  - ModuleNotFoundError: No module named 'click'
+    !!!!!!!!!!!!!!!!!!!!
+    Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+  "questions_and_answers":
+  - "answer": |-
+      Error while starting the test suite. Python couldn't import the click module.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "To add a missing dependency for a package, directive Requires\nor BuildRequires\
+      \ can be used. Since this dependency is only\nrequired by the test suite, BuildRequires\
+      \ is the right choice\nbecause it installs the dependency only on the build\n\
+      machine, not when the package is installed by the user. Add\nspec directive\
+      \ BuildRequires into the spec file preamble\nwith a package name that provides\
+      \ the Python package click.\nIn Fedora, this would be `BuildRequires: python-click`. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed at the check stage while running the test suite for the package.
+      The test suite requires the Python package click which was not found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    1
+    Dynamic buildrequires detected
+    Going to install missing buildrequires. See root.log for details
+  "questions_and_answers":
+  - "answer": |-
+      This is problem in the relevant part in build log about missing build dependencies
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check whether build dependency is really available for the architecture or whether it is just a typo.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      It was not possible to install build dependencies on this architeture
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  Failed to resolve the transaction
+  "questions_and_answers":
+  - "answer": |-
+      It explains that dnf was not able to install required build dependencies.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check whether build dependency is really available for the architecture or whether it is just a typo.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      It was not possible to install build dependencies on this architeture
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  No match for argument: python3dist(scikit-learn
+  "questions_and_answers":
+  - "answer": |-
+      There are details about missing dependencies mentioned in previous snipped
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check whether build dependency is really available for the architecture or whether it is just a typo.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      It was not possible to install build dependencies on this architeture
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    1
+    Program python3 (dbusmock) found: N
+  "questions_and_answers":
+  - "answer": |-
+      A build dependency is missing
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Add "BuildRequires: python3-dbusmock" to the spec file
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because it was missing the python-dbusmock dependency.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    O
+    meson.build:371:6: ERROR: Problem encountered: Tests require python-dbusmoc
+  "questions_and_answers":
+  - "answer": |-
+      A dependency for running the test suite is missing
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Add "BuildRequires: python3-dbusmock" to the spec file
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because it was missing the python-dbusmock dependency.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\nHTML-Proofer found 2 failures!"
+  "questions_and_answers":
+  - "answer": |-
+      It shows HTML-proofer ended with 2 errors.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either add an item with the slug "57-doprava-ve-meste" or adjust the slug
+      referenced from files "./_site/explainery/elektrifikace-dopravy.html"
+      (line 370) and "./_site/temata/energetika.html" (line 778) to an existing one.
+      Check for typos in the slug ID.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were two HTML-proofer errors: Files "./_site/explainery/elektrifikace-dopravy.html"
+      and "./_site/temata/energetika.html"
+      are referencing the item with slug "57-doprava-ve-meste". However, no such item exists.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\n- ./_site/explainery/elektrifikace-dopravy.html\r\n  *  Build\n\
+    error (line 370)\r\n     No item with slug 57-doprava-ve-meste"
+  "questions_and_answers":
+  - "answer": |-
+      It shows there was an error while building file "./_site/explainery/elektrifikace-dopravy.html" on line 370.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either add an item with the slug "57-doprava-ve-meste" or adjust the slug
+      referenced from files "./_site/explainery/elektrifikace-dopravy.html"
+      (line 370) and "./_site/temata/energetika.html" (line 778) to an existing one.
+      Check for typos in the slug ID.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were two HTML-proofer errors: Files "./_site/explainery/elektrifikace-dopravy.html"
+      and "./_site/temata/energetika.html"
+      are referencing the item with slug "57-doprava-ve-meste". However, no such item exists.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\n- ./_site/temata/energetika.html\r\n  *  Build error (line 778)\r\
+    \n     No item with slug 57-doprava-ve-meste"
+  "questions_and_answers":
+  - "answer": |-
+      It shows there was an error while building file "./_site/temata/energetika.html" on line 778.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Either add an item with the slug "57-doprava-ve-meste" or adjust the slug
+      referenced from files "./_site/explainery/elektrifikace-dopravy.html"
+      (line 370) and "./_site/temata/energetika.html" (line 778) to an existing one.
+      Check for typos in the slug ID.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There were two HTML-proofer errors: Files "./_site/explainery/elektrifikace-dopravy.html"
+      and "./_site/temata/energetika.html"
+      are referencing the item with slug "57-doprava-ve-meste". However, no such item exists.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\nHTML-Proofer found 1 failure!"
+  "questions_and_answers":
+  - "answer": |-
+      It shows HTML-proofer ended with errors.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Add an item with slug "57-doprava-ve-meste" or adjust the slug
+      referenced from file "./_site/temata/energetika.html"
+      to one that exists.
+      Check for typos in the slug ID.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The output file "./_site/temata/energetika.html" references an item
+      with slug "57-doprava-ve-meste". However, no such item exists.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\nValid syntax:\r\n\r\n{% include file.ext param='value' param2='value'\
+    \ %}\r"
+  "questions_and_answers":
+  - "answer": |-
+      This is the example of the valid syntax.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the syntax in the call of the include tag
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The Liquid syntax was wrong.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\r\nfatal: Remote branch debug-travis not found in upstream origin"
+  "questions_and_answers":
+  - "answer": |-
+      Git could not clone the branch "debug-travis" from the repository "crocs-muni/usable-cert-validation".
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure the branch "debug-travis" exists in the "crocs-muni/usable-cert-validation"
+      repository and is accessible for the Travis build server.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The git branch needed for build was not found in the repository.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    2
+    location searched: directory source `/usr/share/cargo/registry` (which is replacing registry `crates-io`)
+  "questions_and_answers":
+  - "answer": |-
+      It is the chunk that populates the local registry with what should
+      be all the Rust packages required to build this package.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Currently, the only way to fix the issue is to declare a workspace table in the upstream package's Cargo.toml
+      file and to add both the main package and the smaller package to the members table of the workspace table.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build failed because a dependency, `syn = \"^1.0.73\"` was missing.\n\
+      The dependency was required by a separate small package also in\nthe source\
+      \ that supports the main package. A previous step had incorrectly\nskipped installing\
+      \ that package in the local registry. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    error: failed to select a version for the requirement `syn = "^1.0.73"`
+  "questions_and_answers":
+  - "answer": "This is where the build step fails. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Currently, the only way to fix the issue is to declare a workspace table in the upstream package's Cargo.toml
+      file and to add both the main package and the smaller package to the members table of the workspace table.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build failed because a dependency, `syn = \"^1.0.73\"` was missing.\n\
+      The dependency was required by a separate small package also in\nthe source\
+      \ that supports the main package. A previous step had incorrectly\nskipped installing\
+      \ that package in the local registry. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r -DINCLUDE_INSTALL_DIR:PATH=/usr/includ
+  "questions_and_answers":
+  - "answer": |-
+      This points to the CMake option that needs to be edited, so the files are installed correctly
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Remove the "minizip" from CMAKE_INSTALL_INCLUDEDIR option.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the minizip-ng from version 4 changed the  `CMAKE_INSTALL_INCLUDEDIR` CMake option. In previous
+      version 3 it didn't included the 'minizip' path and it had to be added to the option like
+      "-DCMAKE_INSTALL_INCLUDEDIR=include/minizip". However, in new version 4, it is included and the
+      "minizip" from the path needs to be removed, so the files are installed in the correct path
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    :
+    No match for argument: elpa-mpich-devel >= 2018.05.001
+    No
+    match for argument: elpa-openmpi-devel >= 2018.05.001
+  "questions_and_answers":
+  - "answer": |-
+      Package was retired
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Update the spec file to remove/update that support or try to takeover the package maintenance again.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Retired package was used
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    /
+    error: patch failed: devices/vector/gdevtxtw.c:2059
+    Applying patch
+    devices/vector/gdevtxtw.c with 1 reject...
+    Rejected hunk #1
+  "questions_and_answers":
+  - "answer": |-
+      It shows that patch application failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check that the patch has been upstreamed.
+      If yes: Remove the patch line from spec and the patch from dist-git.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Patch application failed because (in this case) the patch had been upstreamed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      ERROR  Preparation of the repository for creation of an SRPM failed: No source number 0
+  "questions_and_answers":
+  - "answer": |-
+      This line says while parsing specfile, no Source0 was found in that specfile
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Specify Source0 in specfile
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The SRPM build submitted by Packit failed because there was no Source0 field in spec file.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    i
+    error: Bad exit status from /var/tmp/rpm-tmp.h69kmn (%install)
+  "questions_and_answers":
+  - "answer": |-
+      This says the %install part in the specfile failed
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Rename the project to vercajk-cli to create files the pyproject save files macro can
+      find or pass a name of the project to the macro to specify the name of project.
+      In this case it was vercajk instead of vercajk-cli. The vercajk-cli was name
+      of the package in spec file even though the project itself is named vercajk.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The pyproject macro for saving files failed, because it was looking
+      for vecajk-cli module, but no such module was found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    iB
+     minizip-ng-compat-devel              x86_64 3.0.10-7.fc40                       fedora      86.0 K
+  "questions_and_answers":
+  - "answer": |-
+      The minizip-ng-compat-devel package is being installed.  But the `ng` seems like next-generation
+      or new-generation, so perhaps the header file has changed a location or disappeared?
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Try to find where the header file is now. If the code that is being used (from
+      the corresponding header) has moved, start including a different header file.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Missing header file for g++ compilation. Seems like some build-time dependency is not installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ^
+     !! Copr timeout => sending INT
+  "questions_and_answers":
+  - "answer": |-
+      Copr build timeouted, and the build interrupted by SIGINT.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      None
+      so the build can finish faster.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build was still running when the timeout left, so the build has been terminated.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ,
+     'timeout': 18000,
+  "questions_and_answers":
+  - "answer": |-
+      The build timeout is set to 18000 secons.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      None
+      so the build can finish faster.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build was still running when the timeout left, so the build has been terminated.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    :
+    No match for argument: site-packages
+  "questions_and_answers":
+  - "answer": |-
+      Dnf `builddep` command complaints that the `site-packages` package is not available in the build repositories.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Build/provide the`site-packages` package in the Copr repository.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Missing BuildRequires in buildroot.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.BdmXPD
+    + umask 022
+    + cd /builddir/build/BUILD
+    +
+    git clone https://github.com/PCSX2/pcsx2 --recursive
+  "questions_and_answers":
+  - "answer": |-
+      The %prep section contains `git clone`. This is non-standard;
+      typical RPM build is offline. Anyway, this makes the
+      build "sensitive" for external changes and the patch application may get broken (as it happened) very easily.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the patch, or drop it - depending whether it is needed or not.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The spec file uses patch `version-fixes.diff` which is not applicable against the current sources.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ob
+      - nothing provides nim-srpm-macros needed by redhat-rpm-config-178-1.fc34.noarch
+    from copr_xxmitsu_llvm_priority_1
+  "questions_and_answers":
+  - "answer": |-
+      DNF reporting that `nim-srpm-macros` is not installable.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      redhat-rpm-config is a "core" needed by all RPM builds, therefore either the package needs to
+      stop depending on nim-srpm-macros, or the nim-srpm-macros need to appear in repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      redhat-rpm-config package depending on non-existing nim-srpm-macros couldn't be installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ^
+    error: command '/usr/bin/gcc' failed with exit code 1
+  "questions_and_answers":
+  - "answer": |-
+      Gcc with exit code 1 means that the compilation phase failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      The source code needs a fix.  Either the source or the destination pointer needs to be fixed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Incompatible C/C++ pointer assignment in source code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    :
+    error: Bad exit status from /var/tmp/rpm-tmp.iulThE (%build)
+  "questions_and_answers":
+  - "answer": |-
+      Compilation failure failed the whole %build phase.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      The source code needs a fix.  Either the source or the destination pointer needs to be fixed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Incompatible C/C++ pointer assignment in source code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    + /usr/bin/python3 setup.py build '--executable=/usr/bin/python3 -sP'
+  "questions_and_answers":
+  - "answer": |-
+      Gcc is executed using `python3 setup.py build` - so a "setuptools compilation" case.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      The source code needs a fix.  Either the source or the destination pointer needs to be fixed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Incompatible C/C++ pointer assignment in source code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    No matching package to install: 'extra-cmake-modules >= 5.248.0'
+  "questions_and_answers":
+  - "answer": |-
+      DNF reports that `extra-cmake-modules` with version >= 5.248.0 couldn't be found.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the dependency specification, or provide a newer extra-cmake-modules package in the build repository.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The extra-cmake-modules don't exist in the build repository, or exists in an incompatible version.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    0
+    Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.CMCiRx
+  "questions_and_answers":
+  - "answer": |-
+      The rpmbuild actually started, meaning that all the BuildRequires are installed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check the failed test-cases, and fix them.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The package testsuite failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    t
+    99% tests passed, 2 tests failed out of 692
+  "questions_and_answers":
+  - "answer": |-
+      Cmake testsuite claims that 2 tests failed out of 692.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check the failed test-cases, and fix them.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The package testsuite failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    1
+    2 errors out of 336434 tests on  Linux 32-bit little-endian
+    !Failures on these tests: func4-2.46 func4-5.2
+  "questions_and_answers":
+  - "answer": |
+      There are two test failures from the sqlite test suite.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Reproduce the test case failures and analyze them. You're
+      encouraged to work with the upstream community of sqlite
+      to resolve the test failures. When you resolve them, create a downstream patch that will fix those two tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a test suite run during the sqlite RPM build. It needs to pass
+      for the RPM build to succeed. Two test cases failed in this build.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    s
+    ! func4-2.46 expected: [{}]
+    ! func4-2.46 got:      [9007199254740992.0]
+    !
+    func4-5.23 expected: [{}]
+    ! func4-5.23 got:      [9007199254740992
+  "questions_and_answers":
+  - "answer": |-
+      Sqlite tests func4-2.46 and func4-5.23 failed
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Reproduce the test case failures and analyze them. You're
+      encouraged to work with the upstream community of sqlite
+      to resolve the test failures. When you resolve them, create a downstream patch that will fix those two tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a test suite run during the sqlite RPM build. It needs to pass
+      for the RPM build to succeed. Two test cases failed in this build.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e
+    error: Patch number not specified: %patch -p1 -b .buil
+  "questions_and_answers":
+  - "answer": |-
+      Patch cannot be expanded because it is not precisely selected.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Select the proper patch by appending index to the `%patch` statement.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      A patch is expected to be expanded in the %prep section via `%patch -p1 -b .build`.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      Bad file: /builddir/build/SOURCES/apr-1.7.3-lmdb-support.patch: No such file or director
+  "questions_and_answers":
+  - "answer": |-
+      The patch cannot be found.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure that the patch apr-1.7.3-lmdb-support.patch you defined in your
+      spec file exists and is committed and pushed in the source control.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a patch apr-1.7.3-lmdb-support.patch defined but it cannot be located.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ;'
+    ERROR 1698 (28000): Access denied for user 'root'@'localhos
+  "questions_and_answers":
+  - "answer": |-
+      This error message indicates that the user "root" attempting to connect to the
+      MySQL server from the local host (localhost) is not authorized to perform the
+      requested actions. The specific action that failed was attempting to alter the
+      password for the "root" user and create a new database named "test_db".
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      To resolve this error, you will need to verify that the password for the "root" user is correct.
+      You can do this by running the following command:
+
+      mysql -u root -p
+
+      This will prompt you
+      to enter the password for the "root" user. If the password is incorrect, you will be denied
+      access to the database. If the password is correct, you will be presented with the MySQL
+      command prompt.
+
+      Once you have verified that the password is correct, you can retry the original
+      command to alter the password for the "root" user and create the new database.
+
+      Here
+      is the complete command again:
+
+      mysql -u root -S /builddir/build/BUILD/aws-xray-sdk-python-2.12.1/mysql.sock
+      -P 13573 -e 'ALTER USER ''root''@''localhost'' IDENTIFIED BY '''root'';
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      One of the tests failed for your package aws-xray-sdk-python in the %check section.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    k
+    DEBUG util.py:461:  No matching package to install: 'cmake(KF6TextUtils)'
+  "questions_and_answers":
+  - "answer": |-
+      There is no RPM package available to satisfy requirement `cmake(KF6TextUtils)`.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure the dependency exists. If it doesn't, you will need to
+      package it or possibly change your package not to require it.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Build dependency `cmake(KF6TextUtils)` of SRPM akonadi-search-24.01.90-3.eln134.src.rpm cannot be installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    Failed Tests (2):
+      Clang :: CodeGen/SystemZ/unaligned-symbols.c
+      Clang :: Interpreter/cxx20-modules.cppm
+  "questions_and_answers":
+  - "answer": |-
+      Multiple tests have failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all tests are passing before initializing build again.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Unit tests have failed during build.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    Copr build error: Build failed
+  "questions_and_answers":
+  - "answer": |-
+      Build failure message.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure that all required packages are available for package manager,\
+      \ and are free of conflicts. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required packages were not available when requested.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    No matching package to install: 'python3dist(numpy) = 1.23.2'
+  "questions_and_answers":
+  - "answer": |-
+      Package 'python3dist(numpy) = 1.23.2' was not found in repositories.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all required packages are available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required packages are not available in installed repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    WARNING: DNF command failed, retrying, attempt #3, sleeping 1
+  "questions_and_answers":
+  - "answer": |-
+      Final DNF attempt to obtain required packages.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all required packages are available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required packages are not available in installed repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "s\nNo matches found for the following disable plugin patterns: local,\
+    \ spacewalk,\nversionlock\nCopr repository                               "
+  "questions_and_answers":
+  - "answer": |-
+      Requested packages are not available.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure all required packages are available in installed repositories.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required packages are not available in installed repositories.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+
+    Copr build error: Build fail
+  "questions_and_answers":
+  - "answer": |-
+      Final build failure message.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all dependencies are available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required files can not be obtained, as the DNF can not find any available providers.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    s)
+    WARNING: DNF command failed, retrying, attempt #3, sleeping 1
+  "questions_and_answers":
+  - "answer": |-
+      Final attempt to install dependencies by DNF.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all dependencies are available during build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Required files can not be obtained, as the DNF can not find any available providers.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    =
+    error: Bad exit status from /var/tmp/rpm-tmp.IlLPIi (%build)
+  "questions_and_answers":
+  - "answer": |-
+      Build step has failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure that all tests can execute successfully and without errors. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have either failed or experienced exceptions.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+
+    Copr build error: Build failed
+  "questions_and_answers":
+  - "answer": |-
+      Final copr build failure message.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure that all tests can execute successfully and without errors. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have either failed or experienced exceptions.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    [ERROR] Tests run: 8709, Failures: 1, Errors: 2, Skipped: 14
+  "questions_and_answers":
+  - "answer": |-
+      One test has failed, while two experienced errors.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure that all tests can execute successfully and without errors. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have either failed or experienced exceptions.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "] \n[INFO] -------------------------------------------------------\n\
+    [INFO]\n T E S T S\n[INFO] -----------------------------------------------------"
+  "questions_and_answers":
+  - "answer": |-
+      Test execution disclaimer.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure that all tests can execute successfully and without errors. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have either failed or experienced exceptions.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    y
+
+    This system is not registered with an entitlement server. You can use subscription-manager to registe
+  "questions_and_answers":
+  - "answer": "Server isn't enrolled in Red Hat subscription. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all repositories used by package manager are available before build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Package repository was not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \n[2024-01-30 06:54:14,752][ ERROR][PID:3785726] Backend process error:\
+    \ No success file => build failur"
+  "questions_and_answers":
+  - "answer": "Build was declared as failed, since there is no success file. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that all repositories used by package manager are available before build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Package repository was not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+
+    Copr build error: Build fail
+  "questions_and_answers":
+  - "answer": |-
+      Final build failure message.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check if required packages actually exist and are present in the repos.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Several required packages couldn't be found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    12
+    = 2 failed, 1051 passed, 20 skipped, 7 deselected, 5 xfailed, 1 xpassed in 83.86s (0:01:23)
+  "questions_and_answers":
+  - "answer": |-
+      Two tests failed, 5 failed with caveats.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check if test failures are connected to actual issues, and not false positives. If they
+      are indeed caused by deficiencies in user code, fix them and submit the build again.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+       extra tokens at the end of %endif directive in line 230:  %endif # with test
+  "questions_and_answers":
+  - "answer": |-
+      Specfile syntax was violated.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check if test failures are connected to actual issues, and not false positives. If they
+      are indeed caused by deficiencies in user code, fix them and submit the build again.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple tests have failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    No matching package to install: 'python3dist(xmlschema) >= 2.2.3'
+  "questions_and_answers":
+  - "answer": |-
+      Required package `python3dist(xmlschema) >= 2.2.3` couldn't be found.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Check presence of dependencies in installed repositories. If possible,
+      add package to repository or install repository providing it.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Dependencies couldn't be satisfied.
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \n Problem: conflicting requests\n  - nothing provides libllhttp.so.9.0()(64bit)\n\
+    needed by python3-aiohttp-3.8.5-1.eln130.aarch64 from buil"
+  "questions_and_answers":
+  - "answer": "The `libllhttp.so.9.0` is needed by `python3-aiohttp` package but cannot\
+      \ be installed "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      The `libllhttp` library should be provided by the `llhttp-devel`
+      package. You will need to build it for Fedora ELN.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The `libllhttp.so.9.0` library is needed by `python3-aiohttp` package
+      but cannot be installed because it is not available on Fedora ELN
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e
+    ImportError: cannot import name 'RequestRate' from 'pyrate_limiter'
+    (/usr/lib/python3.12/site-packages/pyrate_limiter/__init__.py)
+  "questions_and_answers":
+  - "answer": |-
+      The relevant error message saying that `RequestRate` cannot be imported from `pyrate_limiter` package.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      There are several possible solutions:
+
+      - Package a newer upstream
+      version which fixes this bug
+      - Explicitly depend on an older
+      version of the `python3-pyrate-limiter` package
+      - Add a patch
+      to your package, changing the name of the imported class
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "This is a python package trying to import `RequestRate` from the `pyrate_limiter`\n\
+      package. However, in version 3, the `RequestRate` was renamed to just `Rate`. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     .
+    + %generate_buildrequires
+    /var/tmp/rpm-tmp.BxlaKs: line 43: fg: no
+    job control
+    error: Bad exit status from /var/tmp/rpm-tmp.BxlaKs (%pre
+  "questions_and_answers":
+  - "answer": |-
+      The error message is very cryptic but `fg: no job control` usually means that an RPM macro is not defined.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Stop using dynamic `BuildRequires` for EPEL8 and lower. Instead, define all `BuildRequires` manually.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The `%generate_buildrequires` is not available on EPEL8. It was introduced in Fedora 31 and therefore will
+      be available only in EPEL9 and higher.
+
+      See https://fedoraproject.org/wiki/Changes/DynamicBuildRequires
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ch
+    + %generate_buildrequires
+    /var/tmp/rpm-tmp.hdU7SS: line 53: fg: no
+    job control
+    error: Bad exit status from /var/tmp/rpm-tmp.hdU7SS (%pre
+  "questions_and_answers":
+  - "answer": |-
+      The error message is very cryptic but `fg: no job control` usually means that an RPM macro is not defined.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Stop using dynamic `BuildRequires` for EPEL8 and lower. Instead, define all `BuildRequires` manually.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The `%generate_buildrequires` is not available on EPEL8. It was introduced\
+      \ in Fedora 31 and therefore will\nbe available only in EPEL9 and higher. \n\
+      \nSee https://fedoraproject.org/wiki/Changes/DynamicBuildRequires"
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ty
+    ImportError: cannot import name 'cached_property' from 'werkzeu
+  "questions_and_answers":
+  - "answer": |-
+      Relevant python error saying that `cached_property` cannot be imported from the `werkzeug` package.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Specify the compatible version of the python3-werkzeug package in your\
+      \ specfile: \n\n   \nBuildRequires: python3-werkzeug >= 0.16.0 \n    BuildRequires:\
+      \ python3-werkzeug < 1.0.0"
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      This package doesn't work with the latest version of the `python3-werkzeug`
+      package because Werkzeug introduced backward
+      None
+    "question": |-
+      What is the reason the build has failed?
+- "context": "cc\nchecking whether the C compiler works... "
+  "questions_and_answers":
+  - "answer": |-
+      The ./configure commands looks for gcc and can't find it
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |
+      Edit the spec file and add a new buildtime dependency for gcc.
+
+          BuildRequires: gcc
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The gcc command is not available in the buildroot
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    D
+    tests/test_background_worker_build.py::test_full_rpm_build_no_sign  !! Copr timeout => sending INT
+  "questions_and_answers":
+  - "answer": |-
+      Test named `tests/test_background_worker_build.py::test_full_rpm_build_no_sign` in pytest run for too long
+      and because of that the Copr build reached its build timeout thus Copr terminated this build as failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the test case.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The Copr build reached its timeout because of a stuck test
+      case thus the build was terminated and labeled as failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ss
+    WARNING: DNF command failed, retrying, attempt #2, sleeping 1
+  "questions_and_answers":
+  - "answer": |-
+      DNF failed to execute command and will retry in 10 seconds.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure availability of all repositories used by DNF before launching build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Metadata for required DNF repo were not available.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    = 1 failed, 2288 passed, 16 skipped, 4 deselected, 2 xfailed, 619 warnings in 752.57s (0:12:32) =
+  "questions_and_answers":
+  - "answer": |-
+      Multiple unit tests have failed, and several were skipped.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that unit tests pass before build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Unit tests have failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ED
+    nilearn/decomposition/tests/test_canica.py::test_percentile_range FAIL
+  "questions_and_answers":
+  - "answer": |-
+      Unit test failure
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that unit tests pass before build.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Unit tests have failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    g
+    ERROR: Exception(/var/lib/copr-rpmbuild/results/merkuro-24.01.95~1.gitcd92535-1.fc39.src.rpm)
+    Config(fedora-39-x86_64) 3 minutes 13 seconds
+  "questions_and_answers":
+  - "answer": |-
+      Build exception report.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure that all installed files are tracked. If necessary, prune installed
+      files, and make sure that only necessary files are installed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple files were not tracked by the spec file, while being installed.
+      This would cause issues during package installation, and or removal.
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \n[2024-01-29 11:27:37,642][ ERROR][PID:2362777] Backend process error:\
+    \ No success file => build failur"
+  "questions_and_answers":
+  - "answer": |-
+      Build failure detected as there was no success file.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure assignment of compatible pointer types to variables. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Incompatible pointer types were used in the compiled code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    m
+    RPM build warnings:
+        %patchN is deprecated (1 usages found), use %patch N (or %patch -P N)
+  "questions_and_answers":
+  - "answer": |-
+      Usage of deprecated '%patchN' spec file directive.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure assignment of compatible pointer types to variables. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Incompatible pointer types were used in the compiled code.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+    /builddir/build/BUILD/dispenso-1.2.0/tests/concurrent_vector_test_common.h:1443:1:
+    error: template argument 3 is invali
+  "questions_and_answers":
+  - "answer": |-
+      Source code can't be compiled.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Follow the suggestions and error messages from the compiler and fix the source code.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Sources could not be compiled.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ]
+    ========== 22 failed, 854 passed, 8 deselected, 48 warnings in 12.74s =========
+  "questions_and_answers":
+  - "answer": |-
+      Pytest test suite failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Make sure all test cases pass. You can also disable those that fail if they are not relevant or cannot work.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The test suite is executed during the RPM build process and
+      is required to pass. In this case, 22 test cases failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ]
+    ipyparallel/tests/test_asyncresult.py::TestAsyncResult::test_wait_for_send FAILED
+  "questions_and_answers":
+  - "answer": |-
+      TestAsyncResult::test_wait_for_send has failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      %patchN is deprecated (3 usages found), use %patch N (or %patch -P N)
+  "questions_and_answers":
+  - "answer": |-
+      Deprecation warning, could be a sign of long term maintenance issues.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e
+    >       with pytest.raises(TimeoutError):
+    E       Failed: DID NOT RAISE <class 'TimeoutError'>
+  "questions_and_answers":
+  - "answer": |-
+      Tested code did not raise TimeoutError, thus violating the test assertion and failing the test.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+    ipyparallel/tests/test_asyncresult.py:398: Failed
+  "questions_and_answers":
+  - "answer": |-
+      Location of the test code assertion breach.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r
+    [2024-01-26 05:54:20,295][ ERROR][PID:3743068] Build failed:
+    Backend process error: No success file => build failur
+  "questions_and_answers":
+  - "answer": |-
+      Build failure reported.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \n[2024-01-26 05:54:20,306][ ERROR][PID:3743068] Backend process error:\
+    \ No success file => build failur"
+  "questions_and_answers":
+  - "answer": |-
+      Build failure reported.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    :
+        %patchN is deprecated (3 usages found), use %patch N (or %patch -P N
+  "questions_and_answers":
+  - "answer": |-
+      Deprecated RPM directive. This could indicate long term maintenance issues.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": "Ensure the 'TimeoutError' is actually raised by the tested code. "
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Test assertion has been violated, as the tested code didn't raise expected exception.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    '
+
+    Copr build error: Build fail
+  "questions_and_answers":
+  - "answer": |-
+      Final build failure message.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Resolve individual errors in tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple errors were encountered by python test modules. This can be genuine
+      failure of the tested code, or failure of testing code itself.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      FileNotFoundError: [Errno 2] No such file or directory: 'node'
+  "questions_and_answers":
+  - "answer": |-
+      Expected file does not exist.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Resolve individual errors in tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple errors were encountered by python test modules. This can be genuine
+      failure of the tested code, or failure of testing code itself.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+      Resource stopwords not found.
+  "questions_and_answers":
+  - "answer": "Resource 'stopwords' could not be found. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Resolve individual errors in tests.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Multiple errors were encountered by python test modules. This can be genuine
+      failure of the tested code, or failure of testing code itself.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    r
+    [2024-01-26 15:23:19,253][ ERROR][PID:3560690] Build failed:
+    Backend process error: No success file => build failur
+  "questions_and_answers":
+  - "answer": |-
+      General build failure report.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure proper type of function parameters.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Error was raised during compilation of the c++ code, caused by code in file 'internfile/mh_xslt.cpp'.
+    "question": |-
+      What is the reason the build has failed?
+- "context": " \n[2024-01-26 15:23:19,259][ ERROR][PID:3560690] Backend process error:\
+    \ No success file => build failur"
+  "questions_and_answers":
+  - "answer": |-
+      General build failure report.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure proper type of function parameters.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Error was raised during compilation of the c++ code, caused by code in file 'internfile/mh_xslt.cpp'.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    nk
+    Executing(%check): /bin/sh -e /var/tmp/rpm-tmp.1fyr
+  "questions_and_answers":
+  - "answer": |-
+      The failure happens in the %check section.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the testsuite. This could mean anything; fixing the test-case (if
+      broken) or fixing the code (so the test-case reveals a real bug).
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the Python testsuite, triggered by CMake testsuite, executed in %check phase failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    Errors while running CTest
+  "questions_and_answers":
+  - "answer": |-
+      The command that fails with non-zero exit status is `ctest`, so this is a CMake-based test-suite failure.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the testsuite. This could mean anything; fixing the test-case (if
+      broken) or fixing the code (so the test-case reveals a real bug).
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the Python testsuite, triggered by CMake testsuite, executed in %check phase failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+
+
+    1: Test command: /usr/bin/python3 "-m" "unittest" "discover"
+    "-s" "tests" "-t" "/builddir/build/BUILD/dnf-4.18.2"
+  "questions_and_answers":
+  - "answer": |-
+      The first-cmake test failed, which is a transitive call to Python unittests.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the testsuite. This could mean anything; fixing the test-case (if
+      broken) or fixing the code (so the test-case reveals a real bug).
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the Python testsuite, triggered by CMake testsuite, executed in %check phase failed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     'srpm_build_method': 'rpkg',
+  "questions_and_answers":
+  - "answer": |-
+      This seems like a build with `rpkg-util`.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": I dont know
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Improperly picked source method.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    : {'clone_url': 'https://src.fedoraproject.org/rpms/perl-Guard
+  "questions_and_answers":
+  - "answer": |-
+      But `clone_url` points at Fedora DistGit (the official one).  This seems wrong,
+      you would typically use the DistGit source method instead of rpkg.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": I don't know
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Improperly picked source method.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    B
+     openssl-libs                     x86_64 1:3.1.4-1.fc40             fedora       7.8 Mi
+  "questions_and_answers":
+  - "answer": |-
+      This line indicate that openssl 3.1.4 is used.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You need to add:
+      BuildRequires: gdm-devel
+      to your SPEC file.
+      To be sure you can run command: `dnf
+      provides '*/gdm-choice-list-pam-extension.h'` to find which package contains the required file.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      You are missing the required header file `gdm-choice-list-pam-extension.h`.
+      The file is likely provided by package `gdm-devel`.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .5
+    Run-time dependency libarchive found: NO (tried pkgconfig)
+
+    meson.build:1416:13:
+    ERROR: Dependency "libarchive" not found, tried pkgconfi
+  "questions_and_answers":
+  - "answer": |-
+      The meson build script requires `libarchive` to be present.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You need to add to the SPEC file:
+      BuildRequires: libarchive-devel
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The required dependency `libarchive` is missing.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    0s
+     Additional repo http_kojipkgs_fedorapr 100% |  84.1 KiB/s |   4.1 KiB |  00m00
+  "questions_and_answers":
+  - "answer": |-
+      Your build is using additional non-standard repositories. You may check how it is defined.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Open the URL of the repo and check if there is `repodata` directory
+      and repomd.xml in this directory. If it missing contact owner
+      of this repository to fix the repo. Otherwise, it is likely a
+      network issue. Wait a moment and try to run the build again.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The repository "local" cannot be used. Either there is no DNF repository, or there was a network issue.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |2-
+     k
+     rpm-build                   x86_64 4.18.91-3.fc38              copr_base  69
+  "questions_and_answers":
+  - "answer": |-
+      Note that `rpm-build` is installed from `copr_base` directory, not from Fedora default
+      repositories.  It means that the `rp-build` package is "overwritten" by the Copr
+      repository, and is non-default.  The fact that the Copr author overwrites this low-level
+      utility looks suspicious and is likely guilty for the transaction failure.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix `rpm-build` package or `systemd-rpm-macros`, but likely the former.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Likely because the repository provides broken `rpm-build` package,
+      and thus Mock failed to install all the needed dependencies.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    gn  !! Copr timeout => sending I
+  "questions_and_answers":
+  - "answer": |-
+      This is a sign that Copr build system terminated the build process using SIGINT because the time was out.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the test-suite. It probably found a real problem in the package,
+      and it is *very* good it was found at package build-time.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build of copr-backend package typically finishes relatively quickly,
+      within 10 minutes. The default Fedora Copr timeout, in the year
+      2024, is by default 5 hours.  Because it timeouted, it seems that the
+      build simply hung.  In this case during the test-suite execution.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    nk
+    Executing(%check): /bin/sh -e /var/tmp/rpm-tmp.Cneu
+  "questions_and_answers":
+  - "answer": |-
+      Since `%check` is the last spec section mentioned before the actual failure,
+      it is clear that it is a failure in tests (not %build or %install).
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the test-suite. It probably found a real problem in the package,
+      and it is *very* good it was found at package build-time.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build of copr-backend package typically finishes relatively quickly,
+      within 10 minutes. The default Fedora Copr timeout, in the year
+      2024, is by default 5 hours.  Because it timeouted, it seems that the
+      build simply hung.  In this case during the test-suite execution.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e
+    Finish(bootstrap): chroot init
+  "questions_and_answers":
+  - "answer": |-
+      The 'Finish(bootstrap): chroot init' means that Mock finalized bootstrap installation, so there's no problem.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the dependency tree, either python3-sphinx_rtd_theme or python3-sphinx or both.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the BuildRequires specify a non-installable package.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    !
+    Finish: installing minimal buildroot with dnf
+  "questions_and_answers":
+  - "answer": |-
+      The "Finish: installing minimal buildroot with dnf" means that
+      even the minimal buildroot was successfully initialized.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the dependency tree, either python3-sphinx_rtd_theme or python3-sphinx or both.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the BuildRequires specify a non-installable package.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    t
+    Start: build phase for rebase-helper-0.28.1-3.fc38.src.rpm
+  "questions_and_answers":
+  - "answer": "The \"Start: build phase...\" part means that Mock started building\
+      \ the source RPM. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the dependency tree, either python3-sphinx_rtd_theme or python3-sphinx or both.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the BuildRequires specify a non-installable package.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    m
+    Finish: build phase for rebase-helper-0.28.1-3.fc38.src.rpm
+  "questions_and_answers":
+  - "answer": |-
+      Source RPM has been successfully built.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the dependency tree, either python3-sphinx_rtd_theme or python3-sphinx or both.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the BuildRequires specify a non-installable package.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    nk
+    Executing(%check): /bin/sh -e /var/tmp/rpm-tmp.Hhv7
+  "questions_and_answers":
+  - "answer": "The Executing(%check) is the section that fails. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      If the MiniTest package exists, you need to make it available on
+      rubypath. If not, you need to provide the MiniTest package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The `MiniTest` ruby package is not available at the ruby compilation time.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "  \nAdditional repo http_kojipkgs_fedoraproject_org 226 MB/s |  52 MB\
+    \     00:"
+  "questions_and_answers":
+  - "answer": |-
+      This snippet indicates that a koji buildroot is used, on top of "distributed" fedora packages.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Restart the build after several minutes; the remote Koji buildroot
+      repository typically gets fixed itself automatically.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Because the builder failed to download Koji buildroot metadata.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Problem: nothing provides requested (python3dist(botocore) < 1.35~~ with python3dist(botocore) >= 1.34.2
+  "questions_and_answers":
+  - "answer": |-
+      Here you can see the reason why the build deps were not installed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fedora always provides a single version of each package.  You typically want to
+      a)
+      start providing a different `python3dist(botocore) to meet the dependancy
+      b) start
+      depending on a different version
+      3) provide a compat package so both versions are available
+      in fedora
+      You want to go with 1) and 2) because 3) is very ineconomical.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The package BuildRequires (build-depends) python3dist(botocore) in\
+      \ a specific\nversion range, and that is not unfortunately available in the\
+      \ repositories- "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    -w
+    Requirement satisfied: pip >= 19
+       (installed: pip 23.2.
+  "questions_and_answers":
+  - "answer": "This part says which version of python3-pip has been installed into\
+      \ the buildroot. "
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Build the required version of python3-pip in the same copr. Then retrigger a new build of python-pipdeptree.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a dependency version conflict that is impossible to resolve. python3-pip version (equal
+      or greater than 23.3.1), required by python-pipdeptree, is not available in the copr repository.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    B
+     python3-pip               noarch 23.2.1-1.fc40     copr_base   14.0 M
+  "questions_and_answers":
+  - "answer": |-
+      It says which python3-pip has been installed: version 23.2.1-1.fc40
+      which has been built in the given copr repository
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Build the required version of python3-pip in the same copr. Then retrigger a new build of python-pipdeptree.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a dependency version conflict that is impossible to resolve. python3-pip version (equal
+      or greater than 23.3.1), required by python-pipdeptree, is not available in the copr repository.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    z'
+    Handling pip>=23.3.1; extra == 'test' from built wheel metadata: Requires-Dist (pipdeptre
+  "questions_and_answers":
+  - "answer": |-
+      It contains the requirements read from the built wheel metadata, including
+      the version constraint - pip's version has to be greater or equal 23.3.1
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Build the required version of python3-pip in the same copr. Then retrigger a new build of python-pipdeptree.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      There is a dependency version conflict that is impossible to resolve. python3-pip version (equal
+      or greater than 23.3.1), required by python-pipdeptree, is not available in the copr repository.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    fs
+    vendor/github.com/containers/storage/drivers/btrfs/btrfs.go:12:10:
+    fatal error: btrfs/ioctl.h: No such file or directo
+  "questions_and_answers":
+  - "answer": |
+      An error from gcc that clearly states why the compilation failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Install package 'btrfs-progs-devel' that contains the header file ' btrfs/ioctl.h'.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      GCC cannot find a header file `btrfs/ioctl.h` which is needed in `storage/drivers/btrfs/btrfs.go`.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    /'
+    ls: cannot access '/builddir/build/BUILD/fedora-distro-aliases-git-7.787dd61/pyproject-wheeldir/*.whl':
+    No such file or directo
+  "questions_and_answers":
+  - "answer": |-
+      Possible cue for debugging the issue locally with rpmbuild
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Edit your specfile and add `%pyproject_wheel` line to the `%build`
+      section.
+
+      According to the Python Packaging Guidelines
+      (since 2021 era), this should be the only macro needed during
+      the build phase of the majority of python packages.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because the python package didn't generate a wheel archive
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    No match for argument: python3dist(ansible-compat) >= 4.1.
+  "questions_and_answers":
+  - "answer": |-
+      Requirement `: python3dist(ansible-compat) >= 4.1.11` cannot be fulfilled.
+      It means there is no package in the repositories with this version.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Change dependencies of your package if the package is available in a different version.
+
+      If you require this
+      particular version, work with the maintainer of ansible-compat to build the required version of the package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Build dependencies for this package cannot be installed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ~~
+    cc1: all warnings being treated as erro
+  "questions_and_answers":
+  - "answer": |-
+      All warnings found by gcc are treated as errors and need to be resolved.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix all warnings which gcc treats as errors or don't compile your software with the option `-Werror`.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The gcc option `-Werror` makes all warnings into errors.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+    Verify the "py-list" command with two absolute arguments ... Timeout (0:45:00)!
+  "questions_and_answers":
+  - "answer": |-
+      It is the reason for the tests to fail. One test timed out.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Resubmit the build again to verify if this is reproducible.
+      Sometimes, such failures happen seemingly at random.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      test_gdb failed because it timed out
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    )
+     !! Copr timeout => sending INT
+  "questions_and_answers":
+  - "answer": |-
+      It tells you that the build took too long to complete
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Increase the timeout of the copr builder or find a high performance builder.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build took too long for the given timeout to complete in time.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ^^
+    AttributeError: module 'importlib.resources' has no attribute 'content
+  "questions_and_answers":
+  - "answer": |-
+      It contains the exact Python error which has occurred with the package build.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      The upstream code has to be ported to the supported importlib.resources.files() API.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Many importlib.resources methods have been removed from Python
+      3.13. importlib.resources.contents() is one of them.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    64
+    error: Empty %files file /builddir/build/BUILD/cli-1.6.10/debugsourcefiles.li
+  "questions_and_answers":
+  - "answer": |-
+      Shows that no binary is part of the debugsourcefiles.list
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix the %gobuild paths with:
+
+      %gobuild -o %{gobuilddir}/bin/tx %{goipath}
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Binary build paths are not correct.
+
+      %gobuild -o %{gobuilddir}/bin/tx %{goipath}/cmd/tx
+
+      For
+      this package it should be:
+
+      %gobuild -o %{gobuilddir}/bin/tx %{goipath}
+    "question": |-
+      What is the reason the build has failed?
+- "context": "3:1:dead:beef:cafe:c19b' (ED25519) to the list of known hosts.\r\n\n\
+    You can\nreproduce this build on your computer by running:\n\n  sudo dnf inst"
+  "questions_and_answers":
+  - "answer": |-
+      This is an information from Copr buildsystem that this build is taking too long and reach the timeout level.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      When you are submitting a new build you can specify the Timeout. The option
+      is available both in WebUI and CLI (--timeout) and is specified in seconds.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Copr killed this build because it reached the timeout level. Builds are not allowed to run forever. The
+      default limit is 5 hours (18000 seconds) but users can increase it up to 30 hours (108000 seconds).
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    pt
+    /script: line 1: fedpkg: command not fou
+  "questions_and_answers":
+  - "answer": |-
+      a command is missing
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Add fedpkg-minimal to the list of packages required to build the SRPM
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      fedpkg or fedpkg-minimal was not installed in the buildroot
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    e!
+    Executing(%check): /bin/sh -e /var/tmp/rpm-tmp.E7U0x
+  "questions_and_answers":
+  - "answer": |-
+      This indicates that rpmbuild started %check section of SPEC file.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You should investigate the reason of the failure of unit test suite and work with upstream on
+      fixing these tests.
+
+      As a quick workaround you may disable the tests. Either by commenting
+      %check section or disabling the specific test using `%pytest -k "not test_pure_equal"`.
+      But be aware that building package with failing test suite can lead to broken software.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build fails because of the failed test suite.\nThe problem is that\
+      \ Windows path for wcmatch\nand Posix path or wcmatch does not differ while\
+      \ the test claims it should be different. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    %]
+    tests/test_pathlib.py::TestComparisons::test_pure_equal FAILED           [ 96%
+  "questions_and_answers":
+  - "answer": |-
+      This indicates that test TestComparisons::test_pure_equal failed.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You should investigate the reason of the failure of unit test suite and work with upstream on
+      fixing these tests.
+
+      As a quick workaround you may disable the tests. Either by commenting
+      %check section or disabling the specific test using `%pytest -k "not test_pure_equal"`.
+      But be aware that building package with failing test suite can lead to broken software.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": "The build fails because of the failed test suite.\nThe problem is that\
+      \ Windows path for wcmatch\nand Posix path or wcmatch does not differ while\
+      \ the test claims it should be different. "
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .o
+    debuginfod.cxx:133:23: fatal error: curl/curl.h: No such file or directory
+     #include <curl/curl.h
+  "questions_and_answers":
+  - "answer": |-
+      build failure
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      be more specific with buildrequires
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      wrong libcurl-devel version installed, maybe from modular httpd24
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    ld
+      /usr/bin/copr-rpmbuild --verbose --drop-resultdir --srpm --task-url
+    https://copr.fedorainfracloud.org/backend/get-srpm-build-task/762335
+  "questions_and_answers":
+  - "answer": |-
+      This indicates that we are building SRC.RPM.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You have several options:
+
+      1) You can put in the Makefile a line `dnf install cargo tar`
+
+      2) Or you can switch
+      in Copr build system to Custom method when you can manually call `dnf install` and then `make srpm`.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      You do not have `cargo` and `tar` binaries installed in the build system when you build the SRC.RPM.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "\\\n\tmake srpm -C /mnt/workdir-ai9uownn/nmstat"
+  "questions_and_answers":
+  - "answer": |-
+      You are running `make srpm` to build a tarball.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You have several options:
+
+      1) You can put in the Makefile a line `dnf install cargo tar`
+
+      2) Or you can switch
+      in Copr build system to Custom method when you can manually call `dnf install` and then `make srpm`.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      You do not have `cargo` and `tar` binaries installed in the build system when you build the SRC.RPM.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    3:1:dead:beef:cafe:c108' (ED25519) to the li
+  "questions_and_answers":
+  - "answer": |-
+      The build dependency is missing. There is no package that provides python3dist(cmocean).
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You have to build the missing dependency first and then rebuild the conflicting packages so
+      they will use newer python. Then you can safely rebuild your package and it should proceed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build dependency could not be satisfied.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "1:dead:beef:cafe:c108' (ED25519) to the list of known "
+  "questions_and_answers":
+  - "answer": |-
+      The build dependency is missing. There is no package that provides python3dist(sphinx-book-theme).
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      You have to build the missing dependency first and then rebuild the conflicting packages so
+      they will use newer python. Then you can safely rebuild your package and it should proceed.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build dependency could not be satisfied.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    pr
+    checking for GNU M4 that supports accurate traces... configure:
+    error: no acceptable m4 could be found in $PAT
+  "questions_and_answers":
+  - "answer": |-
+      Check for acceptable GNU M4 macro processor has failed. This is a problem since M4 is used by autoconf.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Ensure that acceptable version of M4 macro processor is present
+      on the build system. Verify dependencies of the package.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The M4 macro processor was present, but the version 1.4.13 is among those considered not acceptable.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    =
+    RPM build errors:
+    error: Bad exit status from /var/tmp/rpm-tmp.qIdE2g
+    (%check)
+        Bad exit status from /var/tmp/rpm-tmp.qIdE2g (%check)
+  "questions_and_answers":
+  - "answer": |-
+      This is the final rpmbuild output. It shows what build step has failed (%check in this case).
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      It is necessary to find out why the tests failed. In this case,
+      all failures have the same root cause - pytest has changed
+      the implementation of pytest.deprecated_call() function that
+      is being used in these tests, and a helper function that
+      is supposed to mark those tests as skipped rather than failed
+      no longer works.
+      To fix the build it is necessary to make the
+      helper function work correctly with the new version of pytest,
+      or explicitly mark the failed tests as to-be-skipped.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The build failed because its %check step failed - there were 20 failed tests, but no failures are allowed.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    .
+    DEBUG util.py:461:  No match for argument: python3dist(awscrt
+  "questions_and_answers":
+  - "answer": |-
+      It shows that the builder could not find python3dist(awscrt)
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Change the BuildRequires from python3dist(awscrt) to python3-awscrt.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      The builder could not find the BuildRequires dependency 'python3dist(awscrt)'.
+    "question": |-
+      What is the reason the build has failed?
+- "context": "3:1:dead:beef:cafe:c293' (ED25519) to the list of "
+  "questions_and_answers":
+  - "answer": |-
+      Qt6WebEngineWidgets is only available on x86_64 and aarch64 arches.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Use this snippet:
+      %ifarch %{qt6_qtwebengine_arches}
+      BuildRequires: cmake(Qt6WebEngineWidgets)
+      %endif
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Qt6WebEngineWidgets build dependency not found.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    d.
+    Problem: nothing provides requested (crate(rusqlite/bundled)
+    >= 0.28.0 with crate(rusqlite/bundled) < 0.29.0
+  "questions_and_answers":
+  - "answer": |-
+      It shows what searched package must provide. But there is non providing exactly this one.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Comment out feature = bundled for rusqlite dependency.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Fedora rust packages does not provide crate(rusqlite/bundled) crate. But there
+      is package providing crate(rusqlite), so we need to avoid bundled feature.
+    "question": |-
+      What is the reason the build has failed?
+- "context": |-
+    f
+    DEBUG: install: cannot stat 'etc/account-serrver.conf-sample': No such file or director
+  "questions_and_answers":
+  - "answer": |-
+      Expected file `etc/account-serrver.conf-sample` was not found in
+      its expected location.
+
+      Name of the file appears to be a typo.
+    "question": |-
+      Explain log snippets from an RPM build.
+  - "answer": |-
+      Fix typo in the file name `account-serrver.conf-sample`.
+    "question": |-
+      How can I resolve the issue?
+  - "answer": |-
+      Name of  file `account-serrver.conf-sample` contains a typo. Therefore
+      it cannot be present at the expected location. Causing build to fail.
+    "question": |-
+      What is the reason the build has failed?
+"version": !!int |-
+  3
