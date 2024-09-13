@@ -3,6 +3,7 @@
 # We are using ilab 0.18 schema, version 3
 
 import json
+import textwrap
 from typing import Optional
 
 import yaml
@@ -41,31 +42,6 @@ for file in glob.glob(f"{LOGDETECTIVE_DATA_DIR}/**/*.json", recursive=True):
     with open(file) as f:
         raw.append(json.load(f))
 
-
-def smart_string_split(s) -> Optional[str]:
-    """ilab enforces line length below 120 chars, so we need to split
-    our text to fit; this is a naive algorith to halve text until it fits,
-    while splitting it on empty space ' '."""
-    le = len(s)
-    if le <= 110:
-        return s
-
-    le_half = int(le / 2)
-    s91 = s[le_half:]
-    try:
-        s1, s2 = s91.split(" ", maxsplit=1)
-    except ValueError:
-        # no space :/ don't know what to do
-        return None
-    before = f"{s[:le_half]}{s1}"
-    after = s2
-    # 112 = 7 spaces for padding, 112 the log line, 1 = EOL
-    if len(before) >= 112 or len(after) >= 112:
-        return f"{smart_string_split(before)}\n{smart_string_split(after)}"
-    else:
-        return f"{before}\n{after}"
-
-
 for e in raw:
     for k, v in e['logs'].items():
         for s in v['snippets']:
@@ -73,8 +49,13 @@ for e in raw:
             if len(snippet) > 150:
                 # too big, we'll figure it out later
                 continue
-            snippet = smart_string_split(snippet)
-            if snippet is None:
+            # 120 is the instructlab limit for a yaml line
+            # 112 = 7 spaces for padding, 112 the log line, 1 = EOL
+            # since snippet is the log chunk, we wanna be as strict as possible on the wrapping
+            snippet = "\n".join(textwrap.wrap(
+                snippet, width=112, replace_whitespace=False, break_long_words=False,
+                drop_whitespace=False, break_on_hyphens=False)).strip()
+            if not snippet:
                 continue
             if snippet in haz_snippets:
                 continue
@@ -82,16 +63,17 @@ for e in raw:
                 "context": snippet,
                 "questions_and_answers": [{
                     "question": "Explain log snippets from an RPM build.",
-                    "answer": smart_string_split(s['user_comment']),
+                    "answer": "\n".join(textwrap.wrap(s["user_comment"], width=112))
                 },{
                     "question": "How can I resolve the issue?",
-                    "answer": smart_string_split(e["how_to_fix"])
+                    "answer": "\n".join(textwrap.wrap(e["how_to_fix"], width=112))
                 },{
                     "question": "What is the reason the build has failed?",
-                    "answer": smart_string_split(e["fail_reason"])
+                    "answer": "\n".join(textwrap.wrap(e["fail_reason"], width=112))
                 }]
             })
             haz_snippets.add(snippet)
+
 
 # this default style enforces multiline strings
 print(yaml.dump(data, default_style="|"))
