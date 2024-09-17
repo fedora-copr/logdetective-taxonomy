@@ -42,6 +42,11 @@ for file in glob.glob(f"{LOGDETECTIVE_DATA_DIR}/**/*.json", recursive=True):
     with open(file) as f:
         raw.append(json.load(f))
 
+wrapper_snippets = textwrap.TextWrapper(
+    width=112, replace_whitespace=False, break_long_words=False,
+    drop_whitespace=False, break_on_hyphens=False
+)
+wrapper_text = textwrap.TextWrapper(width=112)
 for e in raw:
     for k, v in e['logs'].items():
         for s in v['snippets']:
@@ -52,9 +57,7 @@ for e in raw:
             # 120 is the instructlab limit for a yaml line
             # 112 = 7 spaces for padding, 112 the log line, 1 = EOL
             # since snippet is the log chunk, we wanna be as strict as possible on the wrapping
-            snippet = "\n".join(textwrap.wrap(
-                snippet, width=112, replace_whitespace=False, break_long_words=False,
-                drop_whitespace=False, break_on_hyphens=False)).strip()
+            snippet = wrapper_snippets.fill(snippet).strip()
             if not snippet:
                 continue
             if snippet in haz_snippets:
@@ -63,13 +66,13 @@ for e in raw:
                 "context": snippet,
                 "questions_and_answers": [{
                     "question": "Explain log snippets from an RPM build.",
-                    "answer": "\n".join(textwrap.wrap(s["user_comment"], width=112))
+                    "answer": wrapper_text.fill(s["user_comment"])
                 },{
                     "question": "How can I resolve the issue?",
-                    "answer": "\n".join(textwrap.wrap(e["how_to_fix"], width=112))
+                    "answer": wrapper_text.fill(e["how_to_fix"])
                 },{
                     "question": "What is the reason the build has failed?",
-                    "answer": "\n".join(textwrap.wrap(e["fail_reason"], width=112))
+                    "answer": wrapper_text.fill(e["fail_reason"])
                 }]
             })
             haz_snippets.add(snippet)
