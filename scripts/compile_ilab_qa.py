@@ -4,21 +4,11 @@
 
 import json
 import textwrap
-from typing import Optional
-
+import argparse
 import yaml
 import glob
-import pathlib
-import sys
+import os
 
-try:
-    LOGDETECTIVE_DATA_DIR = pathlib.Path(sys.argv[1])
-except IndexError:
-    print(
-        f"usage: {sys.argv[0]} PATH\n\n"
-        "First argument (PATH) is a path to directory tree of unpacked"
-          " results from the https://logdetective.com/download website.")
-    sys.exit(1)
 
 data = {
     "version": 3,
@@ -35,48 +25,72 @@ data = {
     }
 }
 
-raw = []
-# ilab doesn't allow duplicate entries, so we need to make our entries unique
-haz_snippets = set()
-for file in glob.glob(f"{LOGDETECTIVE_DATA_DIR}/**/*.json", recursive=True):
-    with open(file) as f:
-        raw.append(json.load(f))
 
-wrapper_snippets = textwrap.TextWrapper(
-    width=112, replace_whitespace=False, break_long_words=False,
-    drop_whitespace=False, break_on_hyphens=False
-)
-wrapper_text = textwrap.TextWrapper(width=112)
-for e in raw:
-    for k, v in e['logs'].items():
-        for s in v['snippets']:
-            snippet = v['content'][s['start_index']:s['end_index']]
-            if len(snippet) > 150:
-                # too big, we'll figure it out later
-                continue
-            # 120 is the instructlab limit for a yaml line
-            # 112 = 7 spaces for padding, 112 the log line, 1 = EOL
-            # since snippet is the log chunk, we wanna be as strict as possible on the wrapping
-            snippet = wrapper_snippets.fill(snippet).strip()
-            if not snippet:
-                continue
-            if snippet in haz_snippets:
-                continue
-            data["seed_examples"].append({
-                "context": snippet,
-                "questions_and_answers": [{
-                    "question": "Explain log snippets from an RPM build.",
-                    "answer": wrapper_text.fill(s["user_comment"])
-                },{
-                    "question": "How can I resolve the issue?",
-                    "answer": wrapper_text.fill(e["how_to_fix"])
-                },{
-                    "question": "What is the reason the build has failed?",
-                    "answer": wrapper_text.fill(e["fail_reason"])
-                }]
-            })
-            haz_snippets.add(snippet)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-s',
+        '--source-docs',
+        type=str,
+        default='./results/results',
+        help="First argument (PATH) is a path to directory tree of unpacked"
+             " results from the https://logdetective.com/download website."
+        )
+    parser.add_argument(
+        '-d',
+        '--knowledge-target',
+        type=str,
+        default='./knowledge/technology/qna.yaml')
+    args = parser.parse_args()
+
+    raw = []
+    # ilab doesn't allow duplicate entries, so we need to make our entries unique
+    haz_snippets = set()
+    for file in glob.glob(f"{args.source_docs}/**/*.json", recursive=True):
+        with open(file) as f:
+            raw.append(json.load(f))
+
+    wrapper_snippets = textwrap.TextWrapper(
+        width=112, replace_whitespace=False, break_long_words=False,
+        drop_whitespace=False, break_on_hyphens=False
+    )
+
+    wrapper_text = textwrap.TextWrapper(width=112)
+
+    for e in raw:
+        for k, v in e['logs'].items():
+            for s in v['snippets']:
+                snippet = v['content'][s['start_index']:s['end_index']]
+                if len(snippet) > 150:
+                    # too big, we'll figure it out later
+                    continue
+                # 120 is the instructlab limit for a yaml line
+                # 112 = 7 spaces for padding, 112 the log line, 1 = EOL
+                # since snippet is the log chunk, we wanna be as strict as possible on the wrapping
+                snippet = wrapper_snippets.fill(snippet).strip()
+                if not snippet:
+                    continue
+                if snippet in haz_snippets:
+                    continue
+                data["seed_examples"].append({
+                    "context": snippet,
+                    "questions_and_answers": [{
+                        "question": "Explain log snippets from an RPM build.",
+                        "answer": wrapper_text.fill(s["user_comment"])
+                    }, {
+                        "question": "How can I resolve the issue?",
+                        "answer": wrapper_text.fill(e["how_to_fix"])
+                    }, {
+                        "question": "What is the reason the build has failed?",
+                        "answer": wrapper_text.fill(e["fail_reason"])
+                    }]
+                })
+                haz_snippets.add(snippet)
+    if not os.path.exists(os.path.dirname(args.knowledge_target)):
+        os.makedirs(os.path.dirname(args.knowledge_target))
+    with open(args.knowledge_target, 'w') as f:
+        f.write(yaml.dump(data, default_style="|"))
 
 
-# this default style enforces multiline strings
-print(yaml.dump(data, default_style="|"))
+if __name__ == '__main__':
+    main()
